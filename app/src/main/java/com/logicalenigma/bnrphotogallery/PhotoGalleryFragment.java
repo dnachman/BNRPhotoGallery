@@ -6,12 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.IOException;
 
 /**
  * Copyright 2015 Logical Enigma
@@ -45,13 +42,7 @@ public class PhotoGalleryFragment extends Fragment {
     private class FetchItemsTask extends AsyncTask<Void,Void,Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            try {
-                String result = new FlickrFetchr().getUrlString("https://www.bignerdranch.com");
-                Log.i(TAG, "Fetched contents of url: " + result);
-            }
-            catch (IOException ioe) {
-                Log.e(TAG, "Failed to fetch url: " + ioe);
-            }
+            new FlickrFetchr().fetchItems();
             return null;
         }
     }
